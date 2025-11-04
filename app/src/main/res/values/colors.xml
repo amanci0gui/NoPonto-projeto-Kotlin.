@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="start_color">#070a10</color>
+    <color name="end_color">#347669</color>
+    <color name="white_50_opacity">#80FFFFFF</color>
+    <color name="toolbar_green">#21AC7B</color>
+    <color name="gradient_start">#FFFFFF</color>
+    <color name="gradient_end">#E5F3F0</color>
+</resources>
