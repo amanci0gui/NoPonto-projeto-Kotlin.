@@ -1,5 +1,6 @@
 package com.example.noponto
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -56,15 +57,11 @@ class LoginActivityWithBinding : AppCompatActivity() {
 
     private fun performLogin(email: String, password: String) {
         // Implemente sua lógica de autenticação aqui
-        showSuccess("Tentativa de login com: $email")
+        showSuccess("Login bem-sucedido!")
 
-        // Exemplo com Retrofit para API:
-        // authRepository.login(email, password).observe(this) { result ->
-        //     when (result) {
-        //         is Result.Success -> navigateToMain()
-        //         is Result.Error -> showError(result.message)
-        //     }
-        // }
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+        finish() // Impede que o usuário volte para a tela de login ao pressionar o botão "voltar"
     }
 
     private fun showError(message: String) {

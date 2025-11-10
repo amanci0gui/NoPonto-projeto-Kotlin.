@@ -9,15 +9,17 @@
 
     <ImageView
         android:id="@+id/loginTitleTextView"
-        android:layout_width="318dp"
-        android:layout_height="318dp"
+        android:layout_width="320dp"
+        android:layout_height="188dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="50dp"
         android:contentDescription="No Ponto Logo"
         android:src="@drawable/logo_no_ponto"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
@@ -32,7 +34,7 @@
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeColor="@color/white"
         app:hintTextColor="@color/white_50_opacity"
-        app:layout_constraintTop_toBottomOf="@+id/loginTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -44,7 +46,7 @@
             android:hint="Coloque seu email"
             android:inputType="textEmailAddress"
             android:textColor="@android:color/white"
-            android:textColorHint="@color/white_50_opacity" />
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -86,10 +88,27 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:cornerRadius="8dp"
+        app:cornerRadius="15dp"
         android:backgroundTint="#00E676"
         app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="98dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="8sp"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#DCDCDC"
+        android:textSize="34sp"
+        android:typeface="normal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTitleTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

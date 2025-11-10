@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1C1C"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:id="@+id/menu_home"
+        style="@style/MenuOption"
+        android:text="Home" />
+
+    <View style="@style/MenuSeparator" />
+
+    <TextView
+        android:id="@+id/menu_registrar_ponto"
+        style="@style/MenuOption"
+        android:text="Registrar Ponto" />
+
+    <View style="@style/MenuSeparator" />
+
+    <TextView
+        android:id="@+id/menu_funcionarios"
+        style="@style/MenuOption"
+        android:text="Funcionários" />
+
+    <View style="@style/MenuSeparator" />
+
+    <TextView
+        android:id="@+id/menu_relatorios"
+        style="@style/MenuOption"
+        android:text="Relatórios" />
+
+    <View style="@style/MenuSeparator" />
+
+    <TextView
+        android:id="@+id/menu_fechar"
+        style="@style/MenuOption"
+        android:text="Fechar" />
+
+</LinearLayout>
