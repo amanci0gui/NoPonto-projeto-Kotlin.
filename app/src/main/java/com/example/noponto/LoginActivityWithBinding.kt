@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.noponto.databinding.ActivityLoginBinding
+import android.util.Patterns
 
 class LoginActivityWithBinding : AppCompatActivity() {
 
@@ -36,15 +37,15 @@ class LoginActivityWithBinding : AppCompatActivity() {
     private fun validateInputs(email: String, password: String): Boolean {
         return when {
             email.isEmpty() -> {
-                showError("Por favor, insira seu email")
+                showMessage("Por favor, insira seu email")
                 false
             }
             password.isEmpty() -> {
-                showError("Por favor, insira sua senha")
+                showMessage("Por favor, insira sua senha")
                 false
             }
             !isValidEmail(email) -> {
-                showError("Por favor, insira um email válido")
+                showMessage("Por favor, insira um email válido")
                 false
             }
             else -> true
@@ -52,23 +53,19 @@ class LoginActivityWithBinding : AppCompatActivity() {
     }
 
     private fun isValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun performLogin(email: String, password: String) {
         // Implemente sua lógica de autenticação aqui
-        showSuccess("Login bem-sucedido!")
+        showMessage("Login bem-sucedido!")
 
         val intent = Intent(this, WelcomeActivity::class.java)
         startActivity(intent)
         finish() // Impede que o usuário volte para a tela de login ao pressionar o botão "voltar"
     }
 
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showSuccess(message: String) {
+    private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
