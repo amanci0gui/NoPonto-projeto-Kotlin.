@@ -70,6 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Pedro Henrique de Lima Franca"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,6 +97,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="pedrolima@email.com"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"
                             android:inputType="textEmailAddress"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -118,12 +120,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/input_cpf"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp">
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintHorizontal_weight="1.2">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="123"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"
                             android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -145,12 +149,14 @@
                         app:layout_constraintTop_toTopOf="@id/input_id"
                         app:layout_constraintStart_toEndOf="@id/input_id"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintHorizontal_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="430.460.518-67"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"
                             android:inputType="numberDecimal"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -173,12 +179,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/input_status"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp">
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintHorizontal_weight="1.2">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="16/08/2004"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"
                             android:inputType="date"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -200,13 +208,15 @@
                         app:layout_constraintTop_toTopOf="@id/input_data"
                         app:layout_constraintStart_toEndOf="@id/input_data"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintHorizontal_weight="1">
 
                         <AutoCompleteTextView
                             android:id="@+id/dropdown_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
+                            android:textColor="@android:color/black"
                             android:text="Ativo" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,13 +238,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/input_cep"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp">
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintHorizontal_weight="1.2">
 
                         <AutoCompleteTextView
                             android:id="@+id/dropdown_perfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
+                            android:textColor="@android:color/black"
                             android:text="Administrador" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -255,12 +267,14 @@
                         app:layout_constraintTop_toTopOf="@id/input_perfil"
                         app:layout_constraintStart_toEndOf="@id/input_perfil"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintHorizontal_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="09715-160"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"
                             android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -288,6 +302,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Rua Gonçalves Dias"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -314,6 +329,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="São Bernardo do Campo"
+                            android:textColor="@android:color/black"
                             android:singleLine="true"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -343,6 +359,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
+                            android:textColor="@android:color/black"
                             android:text="SP" />
                     </com.google.android.material.textfield.TextInputLayout>
 

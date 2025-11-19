@@ -4,20 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noponto.databinding.ActivityEmployeesBinding
+import com.example.noponto.databinding.AppBarBinding
 import com.example.noponto.databinding.ItemEmployeeRowBinding
 
-class EmployeesActivity : AppCompatActivity() {
+class EmployeesActivity : BaseActivity() {
 
     private lateinit var binding: ActivityEmployeesBinding
+    override val appBarBinding: AppBarBinding
+        get() = binding.appBarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployeesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupAppBar()
 
         setupRecyclerView()
     }
@@ -25,7 +29,7 @@ class EmployeesActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         // Create dummy data
         val employeeList = listOf(
-            Employee("Pedro Henrique", "111.222.333-44", "pedro@email.com", "Administrador", "Ativo"),
+            Employee("Pedro Henrique de Lima Franca", "111.222.333-44", "pedro@email.com", "Administrador", "Ativo"),
             Employee("Maria Joaquina", "555.666.777-88", "maria.j@email.com", "Desenvolvedor", "Ativo"),
             Employee("José Carlos", "999.000.111-22", "jose.c@email.com", "Designer", "Inativo")
         )
@@ -38,9 +42,9 @@ class EmployeesActivity : AppCompatActivity() {
 
     data class Employee(val name: String, val cpf: String, val email: String, val role: String, val status: String)
 
-    inner class EmployeeAdapter(private val employees: List<Employee>) : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
+    class EmployeeAdapter(private val employees: List<Employee>) : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
 
-        inner class EmployeeViewHolder(val binding: ItemEmployeeRowBinding) : RecyclerView.ViewHolder(binding.root)
+        class EmployeeViewHolder(val binding: ItemEmployeeRowBinding) : RecyclerView.ViewHolder(binding.root)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
             val binding = ItemEmployeeRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)

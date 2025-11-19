@@ -44,20 +44,26 @@ class MenuDialogFragment : DialogFragment() {
         }
 
         binding.menuRegistrarPonto.setOnClickListener {
-            // TODO: Create and navigate to RegistrarPontoActivity
-            Toast.makeText(requireContext(), "Registrar Ponto Clicado!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), RegisterActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
             dismiss()
         }
 
         binding.menuFuncionarios.setOnClickListener {
-            // TODO: Create and navigate to FuncionariosActivity
-            Toast.makeText(requireContext(), "Funcionários Clicado!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), EmployeesActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
             dismiss()
         }
 
         binding.menuRelatorios.setOnClickListener {
-            // TODO: Create and navigate to RelatoriosActivity
-            Toast.makeText(requireContext(), "Relatórios Clicado!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), RecordActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
             dismiss()
         }
 
