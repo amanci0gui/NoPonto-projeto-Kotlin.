@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F2F5"
+    android:background="#E1F0F1"
     tools:context=".RecordActivity">
 
     <include
@@ -51,10 +51,28 @@
                 android:hint="Usuário">
 
                 <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropdown_periodo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Período">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/periodo_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,25 +93,14 @@
                 android:id="@+id/button_confirmar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#8BC34A"
                 android:minHeight="48dp"
                 android:text="Confirmar"
                 android:textColor="@android:color/white"
-                app:cornerRadius="8dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_cancelar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#F44336"
-                android:minHeight="48dp"
-                android:text="Cancelar"
-                android:textColor="@android:color/white"
-                app:cornerRadius="8dp" />
+                android:backgroundTint="#8BC34A"
+                app:cornerRadius="8dp"
+                app:elevation="6dp"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

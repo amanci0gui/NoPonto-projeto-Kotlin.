@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1F0F1"
+    tools:context=".PlanRegisterActivity">
+
+    <include
+        android:id="@+id/appBarLayout"
+        layout="@layout/app_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/textView_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="CADASTRAR PLANO"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView_dias_presenciais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="DIAS PRESENCIAIS:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textView_title" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_horarios_presenciais"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/textView_dias_presenciais"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/input_entrada_presencial"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:hint="Horário de Entrada">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/entrada_presencial_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/input_saida_presencial"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:hint="Horário de Saída">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/saida_presencial_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:id="@+id/grid_dias_presenciais"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:columnCount="3"
+                        app:layout_constraintTop_toBottomOf="@id/layout_horarios_presenciais"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Segunda-feira" android:id="@+id/check_presencial_segunda"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Terça-feira" android:id="@+id/check_presencial_terca"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Quarta-feira" android:id="@+id/check_presencial_quarta"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Quinta-feira" android:id="@+id/check_presencial_quinta"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Sexta-feira" android:id="@+id/check_presencial_sexta"/>
+
+                    </GridLayout>
+
+
+                    <TextView
+                        android:id="@+id/textView_dias_remotos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="DIAS REMOTOS:"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/grid_dias_presenciais" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_horarios_remotos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/textView_dias_remotos"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/input_entrada_remoto"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:hint="Horário de Entrada">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/entrada_remoto_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/input_saida_remoto"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:hint="Horário de Saída">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/saida_remoto_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:id="@+id/grid_dias_remotos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:columnCount="3"
+                        app:layout_constraintTop_toBottomOf="@id/layout_horarios_remotos"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Segunda-feira" android:id="@+id/check_remoto_segunda"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Terça-feira" android:id="@+id/check_remoto_terca"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Quarta-feira" android:id="@+id/check_remoto_quarta"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Quinta-feira" android:id="@+id/check_remoto_quinta"/>
+                        <com.google.android.material.checkbox.MaterialCheckBox android:text="Sexta-feira" android:id="@+id/check_remoto_sexta"/>
+
+                    </GridLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_buttons"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/grid_dias_remotos"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:gravity="end">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_cancelar_plano"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Cancelar"
+                            android:textColor="@android:color/white"
+                            android:backgroundTint="#F44336"
+                            app:cornerRadius="8dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_confirmar_plano"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:minHeight="48dp"
+                            android:text="Confirmar"
+                            android:textColor="@android:color/white"
+                            android:backgroundTint="#8BC34A"
+                            app:cornerRadius="8dp"
+                            app:elevation="6dp" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

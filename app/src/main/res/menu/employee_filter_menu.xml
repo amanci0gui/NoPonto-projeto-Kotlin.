@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/filter_by_name"
+        android:title="Funcionário" />
+    <item
+        android:id="@+id/filter_by_cpf"
+        android:title="CPF" />
+    <item
+        android:id="@+id/filter_by_email"
+        android:title="Email" />
+    <item
+        android:id="@+id/filter_by_role"
+        android:title="Cargo" />
+    <item
+        android:id="@+id/filter_by_status"
+        android:title="Status" />
+</menu>
