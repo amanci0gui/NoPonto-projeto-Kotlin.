@@ -6,22 +6,25 @@ import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.noponto.databinding.ActivityClockInBinding
+import com.example.noponto.databinding.AppBarBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class ClockInActivity : AppCompatActivity() {
+class ClockInActivity : BaseActivity() {
 
     private lateinit var binding: ActivityClockInBinding
+    override val appBarBinding: AppBarBinding
+        get() = binding.appBarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClockInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupAppBar()
         setupInitialValues()
         setupInputMasks()
         setupDropdown()

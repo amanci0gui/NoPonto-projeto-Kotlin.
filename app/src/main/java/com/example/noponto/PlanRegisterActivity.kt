@@ -3,19 +3,21 @@ package com.example.noponto
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.CheckBox
-import androidx.appcompat.app.AppCompatActivity
 import com.example.noponto.databinding.ActivityPlanRegisterBinding
+import com.example.noponto.databinding.AppBarBinding
 
-class PlanRegisterActivity : AppCompatActivity() {
+class PlanRegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPlanRegisterBinding
+    override val appBarBinding: AppBarBinding
+        get() = binding.appBarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlanRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupAppBar()
         setupMasks()
         setupValidation()
 
