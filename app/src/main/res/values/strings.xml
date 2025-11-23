@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NoPonto</string>
+    <string name="select_user">Selecione um usuário</string>
+    <string name="select_role">Selecione um cargo</string>
+    <string name="employee_name_label">Funcionário: %1$s</string>
+    <string name="employee_role_label">Cargo: %1$s</string>
+    <string name="not_informed">Não informado</string>
 </resources>

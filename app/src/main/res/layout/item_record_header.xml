@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#004D40"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/report_data_header"
+            style="@style/TableHeader.White"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Data" />
+
+        <TextView
+            android:id="@+id/report_entrada_header"
+            style="@style/TableHeader.White"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:gravity="center"
+            android:text="Horário de Entrada" />
+
+        <TextView
+            android:id="@+id/report_saida_header"
+            style="@style/TableHeader.White"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:gravity="center"
+            android:text="Horário de Saída" />
+
+        <TextView
+            android:id="@+id/report_pausas_header"
+            style="@style/TableHeader.White"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:gravity="center"
+            android:text="Quantidade de Pausas" />
+
+        <TextView
+            android:id="@+id/report_horas_registradas_header"
+            style="@style/TableHeader.White"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:gravity="center"
+            android:text="Horas Registradas" />
+
+        <TextView
+            android:id="@+id/report_observacoes_header"
+            style="@style/TableHeader.White"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="Observações" />
+
+        <TextView
+            android:id="@+id/report_homologacao_header"
+            style="@style/TableHeader.White"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Homologação" />
+
+    </LinearLayout>
+
+</LinearLayout>

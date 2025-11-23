@@ -7,9 +7,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:background="@drawable/gradient_bar"
-        android:minHeight="?attr/actionBarSize"
         app:contentInsetStart="0dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 

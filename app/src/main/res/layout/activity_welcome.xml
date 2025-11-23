@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E1F0F1"
     tools:context=".WelcomeActivity">
 
     <!-- AppBarLayout should be a direct child of CoordinatorLayout -->

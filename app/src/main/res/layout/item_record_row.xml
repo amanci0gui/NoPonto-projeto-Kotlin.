@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/content_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/report_data"
+            style="@style/TableBodyText"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp" />
+
+        <TextView
+            android:id="@+id/report_entrada"
+            style="@style/TableBodyText"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/report_saida"
+            style="@style/TableBodyText"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/report_pausas"
+            style="@style/TableBodyText"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/report_horas_registradas"
+            style="@style/TableBodyText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/report_observacoes"
+            style="@style/TableBodyText"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/report_homologacao"
+            style="@style/TableBodyText"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        app:layout_constraintEnd_toEndOf="@id/content_row"
+        app:layout_constraintStart_toStartOf="@id/content_row"
+        app:layout_constraintTop_toBottomOf="@+id/content_row" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
