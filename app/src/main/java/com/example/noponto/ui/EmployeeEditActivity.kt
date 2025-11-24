@@ -1,6 +1,5 @@
-package com.example.noponto
+package com.example.noponto.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.noponto.R
 import com.example.noponto.databinding.ActivityEmployeeEditBinding
 import com.example.noponto.databinding.AppBarBinding
 
@@ -21,7 +21,7 @@ class EmployeeEditActivity : BaseActivity() {
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val imageUri = result.data?.data
             binding.profileImage.setImageURI(imageUri)
         }

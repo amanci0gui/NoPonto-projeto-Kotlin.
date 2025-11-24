@@ -1,4 +1,4 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.os.SystemClock
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.doAfterTextChanged
+import com.example.noponto.R
 import com.example.noponto.databinding.ActivityRecordBinding
 import com.example.noponto.databinding.AppBarBinding
 import com.google.android.material.datepicker.MaterialDatePicker

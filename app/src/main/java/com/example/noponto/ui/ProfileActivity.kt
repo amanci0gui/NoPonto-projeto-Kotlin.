@@ -1,4 +1,4 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.os.Bundle
 import com.example.noponto.databinding.ActivityProfileBinding

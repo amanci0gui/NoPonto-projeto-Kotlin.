@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoPonto">
         <activity
-            android:name=".LoginActivityWithBinding"
+            android:name=".ui.LoginActivityWithBinding"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,40 +22,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".ui.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".ui.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".EmployeesActivity"
+            android:name=".ui.EmployeesActivity"
             android:exported="false" />
         <activity
-            android:name=".RecordActivity"
+            android:name=".ui.RecordActivity"
             android:exported="false" />
         <activity
-            android:name=".ClockInActivity"
+            android:name=".ui.ClockInActivity"
             android:exported="false" />
         <activity
-            android:name=".PlanRegisterActivity"
+            android:name=".ui.PlanRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".RecordUserActivity"
+            android:name=".ui.RecordUserActivity"
             android:exported="false" />
         <activity
-            android:name=".RelatorioActivity"
+            android:name=".ui.OccurrenceActivity"
             android:exported="false" />
         <activity
-            android:name=".OccurrenceActivity"
+            android:name=".ui.EmployeeRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".EmployeeRegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EmployeeEditActivity"
+            android:name=".ui.EmployeeEditActivity"
             android:exported="false" />
     </application>
 

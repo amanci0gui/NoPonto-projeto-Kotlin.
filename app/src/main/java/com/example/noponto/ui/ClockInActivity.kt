@@ -1,4 +1,4 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import com.example.noponto.R
 import com.example.noponto.databinding.ActivityClockInBinding
 import com.example.noponto.databinding.AppBarBinding
 import java.text.SimpleDateFormat
