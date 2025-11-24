@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E1F0F1"
-    tools:context=".EmployeeRegisterActivity">
+    tools:context=".ui.EmployeeRegisterActivity">
 
     <include
         android:id="@+id/appBarLayout"

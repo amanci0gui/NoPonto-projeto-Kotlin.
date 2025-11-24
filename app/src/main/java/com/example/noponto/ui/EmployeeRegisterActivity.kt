@@ -1,37 +1,55 @@
-package com.example.noponto
+package com.example.noponto.ui
 
-import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
+import com.example.noponto.R
+import com.example.noponto.data.repository.FuncionarioRepository
 import com.example.noponto.databinding.ActivityEmployeeRegisterBinding
 import com.example.noponto.databinding.AppBarBinding
+import com.example.noponto.domain.model.Cargo
+import com.example.noponto.domain.model.Endereco
+import com.example.noponto.domain.model.Funcionario
+import com.google.type.DateTime
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+import java.util.Calendar
+import kotlin.toString
 
 class EmployeeRegisterActivity : BaseActivity() {
 
+    private var funcionarioRepository = FuncionarioRepository()
     private lateinit var binding: ActivityEmployeeRegisterBinding
     override val appBarBinding: AppBarBinding
         get() = binding.appBarLayout
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val imageUri = result.data?.data
             binding.profileImage.setImageURI(imageUri)
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployeeRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupDatePicker()
         setupAppBar()
         setupDropdowns()
         setupInputMasks()
@@ -43,6 +61,13 @@ class EmployeeRegisterActivity : BaseActivity() {
 
         binding.buttonCancelar.setOnClickListener {
             finish()
+        }
+
+        binding.buttonConfirmar.setOnClickListener {
+            // Lógica para confirmar o registro do funcionário
+            lifecycleScope.launch {
+                cadastrarFuncionario()
+            }
         }
     }
 
@@ -123,4 +148,116 @@ class EmployeeRegisterActivity : BaseActivity() {
         binding.buttonConfirmar.isEnabled = allFieldsValid
         binding.buttonConfirmar.alpha = if (allFieldsValid) 1.0f else 0.5f
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private suspend fun cadastrarFuncionario() {
+        // Lógica para cadastrar o funcionário usando funcionarioRepository
+        val funcionario = criaFuncionario()
+        val senha = binding.senhaEditText.text.toString().trim()
+
+        funcionarioRepository.registerFuncionario(funcionario, senha).onSuccess {
+            showMessage("Funcionário cadastrado com sucesso!")
+            finish()
+        }.onFailure { exception ->
+            showMessage("Falha ao cadastrar funcionário")
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun criaFuncionario(): Funcionario {
+        // collect values
+        val nome = binding.nomeEditText.text.toString().trim()
+        val email = binding.emailEditText.text.toString().trim()
+        val cpf = binding.cpfEditText.text.toString().trim()
+        val dataNascimentoStr = binding.dataNascimentoEditText.text.toString().trim()
+        val statusStr = binding.statusAutocomplete.text.toString().trim()
+        val cargoStr = binding.cargoAutocomplete.text.toString().trim()
+        val cep = binding.cepEditText.text.toString().trim()
+        val rua = binding.enderecoEditText.text.toString().trim()
+        val cidade = binding.cidadeEditText.text.toString().trim()
+        val estado = binding.estadoAutocomplete.text.toString().trim()
+
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val dataNascimento = LocalDate.parse(dataNascimentoStr, formatter)
+
+        val status = parseStatus(statusStr)
+
+        val cargo = parseCargo(cargoStr)
+
+        // Criar objeto Endereco
+        val endereco = Endereco(
+            cep = cep,
+            logradouro = rua,
+            cidade = cidade,
+            estado = estado
+        )
+
+        // create model (adapt field names to your Funcionario data class)
+        val funcionario = Funcionario(
+            nome = nome,
+            email = email,
+            cpf = cpf,
+            dataNascimento = dataNascimento,
+            status = status,
+            cargo = cargo,
+            endereco = endereco,
+            id = "" // ID will be set by the repository upon registration
+        )
+
+        return funcionario
+    }
+
+    private fun setupDatePicker() {
+        binding.dataNascimentoEditText.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    // Format as dd/MM/yyyy
+                    val formattedDate = String.format(
+                        "%02d/%02d/%04d",
+                        selectedDay,
+                        selectedMonth + 1, // month is 0-based
+                        selectedYear
+                    )
+                    binding.dataNascimentoEditText.setText(formattedDate)
+                },
+                year,
+                month,
+                day
+            )
+
+            // Optional: set max date to today (user can't select future dates)
+            datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+
+            datePickerDialog.show()
+        }
+    }
+
+    private fun parseStatus(statusStr: String): Boolean {
+        return when (statusStr.trim()) {
+            "Ativo" -> true
+            "Inativo" -> false
+            else -> throw IllegalArgumentException("Status inválido: $statusStr")
+        }
+    }
+
+    private fun parseCargo(cargoStr: String): Cargo {
+        return when (cargoStr.trim()) {
+            "Administrador" -> Cargo.ADMINISTRADOR
+            "Desenvolvedor" -> Cargo.DESENVOLVEDOR
+            "Designer" -> Cargo.DESIGNER
+            else -> throw IllegalArgumentException("Cargo inválido: $cargoStr")
+        }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
 }

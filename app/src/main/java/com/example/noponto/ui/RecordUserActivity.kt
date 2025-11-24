@@ -1,4 +1,4 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.noponto.R
 import com.example.noponto.databinding.ActivityRecordUserBinding
 import com.example.noponto.databinding.AppBarBinding
 import com.example.noponto.databinding.ItemRecordRowBinding

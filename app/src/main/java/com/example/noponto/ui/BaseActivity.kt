@@ -1,4 +1,4 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import com.example.noponto.R
 import com.example.noponto.databinding.AppBarBinding
 
 abstract class BaseActivity : AppCompatActivity() {

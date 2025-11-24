@@ -1,12 +1,12 @@
-package com.example.noponto
+package com.example.noponto.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.noponto.R
 import com.example.noponto.databinding.FragmentMenuBinding
 
 class MenuDialogFragment : DialogFragment() {

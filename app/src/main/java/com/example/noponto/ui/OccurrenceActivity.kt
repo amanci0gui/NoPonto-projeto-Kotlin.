@@ -1,6 +1,5 @@
-package com.example.noponto
+package com.example.noponto.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -23,7 +22,7 @@ class OccurrenceActivity : BaseActivity() {
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val imageUri = result.data?.data
             binding.attestationImage.setImageURI(imageUri)
         }
