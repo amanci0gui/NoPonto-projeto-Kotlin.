@@ -3,13 +3,20 @@ package com.example.noponto.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.example.noponto.R
+import com.example.noponto.data.repository.FuncionarioRepository
 import com.example.noponto.databinding.ActivityRecordBinding
 import com.example.noponto.databinding.AppBarBinding
+import com.example.noponto.domain.model.Cargo
+import com.example.noponto.domain.model.Funcionario
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -21,6 +28,10 @@ class RecordActivity : BaseActivity() {
         get() = binding.appBarLayout
 
     private var lastClickTime: Long = 0
+    private val auth = FirebaseAuth.getInstance()
+    private val funcionarioRepository = FuncionarioRepository()
+    private var employeeList: List<Funcionario> = emptyList()
+    private var currentFuncionario: Funcionario? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +44,11 @@ class RecordActivity : BaseActivity() {
         binding.buttonConfirmar.isEnabled = false
         binding.buttonConfirmar.alpha = 0.5f
 
-        // Create dummy data
-        val employeeList = listOf(
-            EmployeesActivity.Employee("Pedro Henrique de Lima Franca", "111.222.333-44", "pedro@email.com", "Administrador", "Ativo"),
-            EmployeesActivity.Employee("Maria Joaquina", "555.666.777-88", "maria.j@email.com", "Desenvolvedor", "Ativo"),
-            EmployeesActivity.Employee("José Carlos", "999.000.111-22", "jose.c@email.com", "Designer", "Inativo")
-        )
-
-        val employeeNames = employeeList.map { it.name }
-
-        val adapter = ArrayAdapter(this, R.layout.dropdown_item, employeeNames)
-        val autoCompleteTextView = (binding.dropdownUsuario.editText as? AutoCompleteTextView)
-        autoCompleteTextView?.setAdapter(adapter)
+        // Load funcionários from database
+        loadFuncionarios()
 
         // Add text changed listeners
-        autoCompleteTextView?.doAfterTextChanged {
+        (binding.dropdownUsuario.editText as? AutoCompleteTextView)?.doAfterTextChanged {
             validateInputs()
         }
         binding.periodoEditText.doAfterTextChanged {
@@ -65,12 +66,12 @@ class RecordActivity : BaseActivity() {
 
         binding.buttonConfirmar.setOnClickListener {
             val selectedEmployeeName = binding.dropdownUsuario.editText?.text.toString()
-            val selectedEmployee = employeeList.find { it.name == selectedEmployeeName }
+            val selectedEmployee = employeeList.find { it.nome == selectedEmployeeName }
             val selectedPeriod = binding.periodoEditText.text.toString()
 
             val intent = Intent(this, RecordUserActivity::class.java).apply {
-                putExtra("employeeName", selectedEmployee?.name)
-                putExtra("employeeRole", selectedEmployee?.role)
+                putExtra("employeeName", selectedEmployee?.nome)
+                putExtra("employeeRole", selectedEmployee?.cargo?.name)
                 putExtra("period", selectedPeriod)
             }
             startActivity(intent)
@@ -98,5 +99,88 @@ class RecordActivity : BaseActivity() {
         }
 
         dateRangePicker.show(supportFragmentManager, "DATE_RANGE_PICKER_TAG")
+    }
+
+    private fun loadFuncionarios() {
+        Log.d("RecordActivity", "Iniciando carregamento de funcionários...")
+        lifecycleScope.launch {
+            // Primeiro, carrega o funcionário autenticado
+            val userId = auth.currentUser?.uid
+            if (userId == null) {
+                Log.e("RecordActivity", "Usuário não autenticado!")
+                employeeList = emptyList()
+                setupDropdown()
+                return@launch
+            }
+
+            funcionarioRepository.getFuncionarioById(userId).fold(
+                onSuccess = { funcionario ->
+                    if (funcionario == null) {
+                        Log.e("RecordActivity", "Funcionário autenticado não encontrado no banco!")
+                        employeeList = emptyList()
+                        setupDropdown()
+                        return@fold
+                    }
+
+                    currentFuncionario = funcionario
+                    Log.d("RecordActivity", "Funcionário autenticado: ${funcionario.nome}, Cargo: ${funcionario.cargo}")
+
+                    // Verifica se é ADMINISTRADOR
+                    if (funcionario.cargo == Cargo.ADMINISTRADOR) {
+                        Log.d("RecordActivity", "Usuário é ADMINISTRADOR - carregando todos os funcionários ativos")
+                        loadAllActiveFuncionarios()
+                    } else {
+                        Log.d("RecordActivity", "Usuário NÃO é ADMINISTRADOR - mostrando apenas ele mesmo")
+                        employeeList = listOf(funcionario)
+                        setupDropdown()
+                    }
+                },
+                onFailure = { error ->
+                    Log.e("RecordActivity", "Erro ao carregar funcionário autenticado", error)
+                    employeeList = emptyList()
+                    setupDropdown()
+                }
+            )
+        }
+    }
+
+    private fun loadAllActiveFuncionarios() {
+        lifecycleScope.launch {
+            funcionarioRepository.getFuncionariosByStatus(true).fold(
+                onSuccess = { funcionarios ->
+                    Log.d("RecordActivity", "Funcionários ativos carregados: ${funcionarios.size}")
+                    funcionarios.forEach { funcionario ->
+                        Log.d("RecordActivity", "  - ${funcionario.nome} (${funcionario.cargo})")
+                    }
+                    employeeList = funcionarios
+                    setupDropdown()
+                },
+                onFailure = { error ->
+                    Log.e("RecordActivity", "Erro ao carregar funcionários ativos", error)
+                    // Em caso de erro, mostra apenas o usuário atual
+                    employeeList = currentFuncionario?.let { listOf(it) } ?: emptyList()
+                    setupDropdown()
+                }
+            )
+        }
+    }
+
+    private fun setupDropdown() {
+        Log.d("RecordActivity", "Configurando dropdown...")
+        Log.d("RecordActivity", "Quantidade de funcionários: ${employeeList.size}")
+
+        val employeeNames = employeeList.map { it.nome }
+        Log.d("RecordActivity", "Nomes dos funcionários: $employeeNames")
+
+        val adapter = ArrayAdapter(this, R.layout.dropdown_item, employeeNames)
+        val autoCompleteTextView = (binding.dropdownUsuario.editText as? AutoCompleteTextView)
+
+        if (autoCompleteTextView != null) {
+            Log.d("RecordActivity", "AutoCompleteTextView encontrado, configurando adapter...")
+            autoCompleteTextView.setAdapter(adapter)
+            Log.d("RecordActivity", "Adapter configurado com sucesso")
+        } else {
+            Log.e("RecordActivity", "AutoCompleteTextView é null! Verificar layout.")
+        }
     }
 }
